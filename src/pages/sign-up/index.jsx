@@ -1,9 +1,6 @@
-import { useRef } from 'react';
 import './styles.css'
 
 const SignUp = ({ onClickHandler }) => {
-  const ref = useRef(null);
-
   const onSubmitHandler = (event) => {
     event.preventDefault();
     
@@ -20,15 +17,15 @@ const SignUp = ({ onClickHandler }) => {
   }
 
   return (
-    <div>
-      <h1>Sign up</h1>
+    <main>
+      <h2>SIGN UP</h2>
       <form className='column' onSubmit={onSubmitHandler}>
-        <input name="username" placeholder="First Name" />
-        <input name="email" placeholder="E-mail" />
-        <input name="password" placeholder="Password" type='password' />
-        <button className='next' type='submit'>Next</button>
+        <input name="username" placeholder="FIRST NAME" />
+        <input name="email" placeholder="E-MAIL" />
+        <input name="password" placeholder="PASSWORD" type='password' />
+        <button className='next' type='submit'>NEXT</button>
       </form>
-    </div>
+    </main>
   )
 }
 
