@@ -11,4 +11,13 @@
 
 * {
   text-transform: uppercase;
+  max-width: 720px;
+}
+
+main {
+  margin: 40px;
+}
+
+input {
+  text-transform: none;
 }

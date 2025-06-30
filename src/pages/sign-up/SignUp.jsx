@@ -22,27 +22,30 @@ const SignUp = ({ onClickHandler, userData }) => {
     const formData = new FormData(event.target);
     const formValues = Object.fromEntries(formData.entries());
 
+    const emailInput = formRef.current.elements.email;
+
     if (isValidEmail(formValues.email)) {
-      formRef.current.elements.email.setCustomValidity('');
+      emailInput.setCustomValidity('');
+      emailInput.reportValidity();
     } else {
-      // FIX ME: this code does not show the custom validity as it should
-    
-      formRef.current.elements.email.setCustomValidity('This e-mail format is not accepted');
-      formRef.current.checkValidity();
+      emailInput.setCustomValidity('This e-mail format is not accepted. Try something like user@domain.com');
+      emailInput.reportValidity();
       return console.error('email not valid')
     }
 
     onClickHandler(formValues);
   }
 
+  const cancelErrorMessageOnInput = (e) => e.target.setCustomValidity('');
+
   return (
     <main>
       <h2>SIGN UP</h2>
       <form ref={formRef} className='column' onSubmit={onSubmitHandler}>
         <input name="name" placeholder="FIRST NAME" required type='text' />
-        <input name="email" placeholder="E-MAIL" required type='email' />
+        <input name="email" placeholder="E-MAIL" required type='email' onInput={cancelErrorMessageOnInput} />
         <input name="password" placeholder="PASSWORD" required type='password' minLength={8} />
-        <button className='next' type='submit'>NEXT</button>
+        <button className='next mt-40' type='submit'>NEXT</button>
       </form>
     </main>
   )

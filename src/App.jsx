@@ -20,20 +20,13 @@ const App = () => {
   const navigate = useNavigate();
   const [formState, setFormState] = useState(initialState);
 
-  // SIGN UP
-  const onSignupNextClickHandler = ({name, email, password}) => {
-    console.log({name, email, password});
-    
+  const onSignUpNextClickHandler = ({name, email, password}) => {
     setFormState(prev => ({ ...prev, name, email, password }));
     navigate(ROUTE_PATHS.MORE_INFO)
   }
 
-  // MORE INFO
   const onMoreInfoNextClickHandler = ({ color, terms }) => {
     setFormState(prev => ({ ...prev, color, terms }));
-    
-    setTimeout(() => console.log(formState), 3000)
-
     navigate(ROUTE_PATHS.CONFIRMATION)
   }
 
@@ -49,6 +42,7 @@ const App = () => {
   const onConfirmationSubmitClickHandlerSuccess = () => {
     navigate(ROUTE_PATHS.SUCCESS);
   }
+  
   const onConfirmationSubmitClickHandlerError = () => {
     navigate(ROUTE_PATHS.ERROR);
   }
@@ -63,7 +57,7 @@ const App = () => {
       <Route
         index
         element={
-          <SignUp onClickHandler={onSignupNextClickHandler} userData={formState} />
+          <SignUp onClickHandler={onSignUpNextClickHandler} userData={formState} />
         }
       />
       

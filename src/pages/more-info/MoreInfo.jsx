@@ -49,7 +49,9 @@ const MoreInfo = ({ backHandler, nextHandler, userData }) => {
 
         <div className='terms-row'>
           <input type='checkbox' name="terms" />
-          <label htmlFor="terms">I AGREE TO <a href="http://upgrade.com">TERMS AND CONDITIONS</a></label>
+          <label htmlFor="terms">
+            I AGREE TO <a href="http://upgrade.com" target='_blank' rel="noopener">TERMS AND CONDITIONS</a>
+          </label>
         </div>
         
         <div className='button-row'>
