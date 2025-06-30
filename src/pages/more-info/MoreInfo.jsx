@@ -1,4 +1,4 @@
-import { useRef } from 'react';
+import { useRef, useEffect } from 'react';
 
 import ColorSelect from './components/ColorSelect';
 import { useGetColors } from './data/useGetColors'
@@ -6,10 +6,23 @@ import { useGetColors } from './data/useGetColors'
 import './styles.css'
 import '../styles.css'
 
-const MoreInfo = ({ backHandler, nextHandler }) => {
+const MoreInfo = ({ backHandler, nextHandler, userData }) => {
   const formRef = useRef(null);
 
   const {isLoading, colors, error } = useGetColors();
+
+  useEffect(() => {
+    if (!formRef.current) return;
+
+    formRef.current.elements.terms.checked = userData.terms;
+  }, [userData]);
+
+  useEffect(() => {
+    if (!formRef.current) return;
+
+    if (!isLoading && !error && userData.color)
+      formRef.current.elements.colors.value = userData.color;
+  }, [userData, isLoading, error]);
 
   const onSubmitHandler = (event) => {
     event.preventDefault();
@@ -36,7 +49,7 @@ const MoreInfo = ({ backHandler, nextHandler }) => {
 
         <div className='terms-row'>
           <input type='checkbox' name="terms" />
-          <label htmlFor="terms">I AGREE TO <a href="http://google.com">TERMS AND CONDITIONS</a></label>
+          <label htmlFor="terms">I AGREE TO <a href="http://upgrade.com">TERMS AND CONDITIONS</a></label>
         </div>
         
         <div className='button-row'>

@@ -6,14 +6,7 @@ import MoreInfo from "./pages/more-info/MoreInfo";
 import Confirmation from "./pages/confirmation/Confirmation";
 import Error from "./pages/error/Error";
 import Success from "./pages/success/Success";
-
-const ROUTE_PATHS = {
-  SIGNUP: '/',
-  MORE_INFO: '/more-info',
-  CONFIRMATION: '/confirmation',
-  SUCCESS: '/success',
-  ERROR: '/error'
-};
+import { ROUTE_PATHS } from "./routes";
 
 const initialState = {
   name: "",
@@ -31,15 +24,13 @@ const App = () => {
   const onSignupNextClickHandler = ({name, email, password}) => {
     console.log({name, email, password});
     
-    setFormState(prev => ({...prev, name, email, password}));
+    setFormState(prev => ({ ...prev, name, email, password }));
     navigate(ROUTE_PATHS.MORE_INFO)
   }
 
   // MORE INFO
   const onMoreInfoNextClickHandler = ({ color, terms }) => {
-    console.log({color , terms});
-    
-    setFormState(prev => ({...prev, color, terms}));
+    setFormState(prev => ({ ...prev, color, terms }));
     
     setTimeout(() => console.log(formState), 3000)
 
@@ -55,12 +46,11 @@ const App = () => {
     navigate(ROUTE_PATHS.MORE_INFO);
   }
 
-  const onConfirmationSubmitClickHandler = () => {
-    // navigate(ROUTE_PATHS.MORE_INFO);
-    console.log(formState);
-
-    // navigate(ROUTE_PATHS.ERROR);
+  const onConfirmationSubmitClickHandlerSuccess = () => {
     navigate(ROUTE_PATHS.SUCCESS);
+  }
+  const onConfirmationSubmitClickHandlerError = () => {
+    navigate(ROUTE_PATHS.ERROR);
   }
 
   const onErrorRestartHandler = () => {
@@ -70,11 +60,29 @@ const App = () => {
 
   return (
     <Routes>
-      <Route index element={<SignUp onClickHandler={onSignupNextClickHandler} userData={formState} />} />
-      <Route path={ROUTE_PATHS.MORE_INFO} element={<MoreInfo backHandler={onMoreInfoBackClickHandler} nextHandler={onMoreInfoNextClickHandler} />} />
-      <Route path={ROUTE_PATHS.CONFIRMATION} element={<Confirmation userData={formState} backHandler={onConfirmationBackClickHandler} submitHandler={onConfirmationSubmitClickHandler} />} />
-      <Route path="/success" element={<Success onRestart={onErrorRestartHandler} />} />
-      <Route path="/error" element={<Error onRestart={onErrorRestartHandler} />} />
+      <Route
+        index
+        element={
+          <SignUp onClickHandler={onSignupNextClickHandler} userData={formState} />
+        }
+      />
+      
+      <Route path={ROUTE_PATHS.MORE_INFO} element={<MoreInfo userData={formState} backHandler={onMoreInfoBackClickHandler} nextHandler={onMoreInfoNextClickHandler} />} />
+      
+      <Route
+        path={ROUTE_PATHS.CONFIRMATION}
+        element={
+          <Confirmation
+            userData={formState}
+            backHandler={onConfirmationBackClickHandler}
+            submitHandler={{
+              onError: onConfirmationSubmitClickHandlerError,
+              onSuccess: onConfirmationSubmitClickHandlerSuccess,
+            }}
+          />}
+        />
+      <Route path={ROUTE_PATHS.SUCCESS} element={<Success onRestart={onErrorRestartHandler} />} />
+      <Route path={ROUTE_PATHS.ERROR} element={<Error onRestart={onErrorRestartHandler} />} />
     </Routes>
   );
 };

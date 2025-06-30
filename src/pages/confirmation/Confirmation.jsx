@@ -1,18 +1,21 @@
+import { useNavigate } from "react-router";
 import '../styles.css'
+import { useFormSubmit } from './data/useFormSubmit';
 
 const Confirmation = ({ userData, backHandler, submitHandler }) => {
-  const onSubmitHandler = (event) => {
-    event.preventDefault();
-    
-    const formData = new FormData(event.target);
-    
-    const formValues = {
-      color: formData.get('colors'),
-      terms: formData.get('terms') === 'on',
-    };
-    console.log({formData, formValues});
+  const navigate = useNavigate();
+  const { isLoading, error, formSubmitAction } = useFormSubmit();
 
-    submitHandler(formValues);
+  const onSubmitHandler = async (event) => {
+    event.preventDefault();
+
+    const hasError = await formSubmitAction(userData);
+
+    if (hasError) {
+      submitHandler.onError();
+    } else {
+      submitHandler.onSuccess();
+    }
   }
 
   return (
@@ -29,7 +32,7 @@ const Confirmation = ({ userData, backHandler, submitHandler }) => {
 
         <div className='button-row'>
           <button className='previous' onClick={backHandler} type="button">BACK</button>
-          <button className='next' type='submit'>SUBMIT</button>
+          <button className='next' type='submit' disabled={isLoading}>SUBMIT</button>
         </div>
       </form>
     </main>
