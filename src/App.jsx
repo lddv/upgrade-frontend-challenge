@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Route, Routes, useNavigate } from "react-router";
 
 import SignUp from "./pages/sign-up";
-import MoreInfo from "./pages/more-info";
+import MoreInfo from "./pages/more-info/MoreInfo";
 import Confirmation from "./pages/confirmation";
 import Error from "./pages/error";
 import Success from "./pages/success";

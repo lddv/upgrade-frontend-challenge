@@ -1,9 +1,8 @@
 import './styles.css'
 import '../../components/styles.css'
+import ColorSelect from './components/ColorSelect';
 
 const MoreInfo = ({ backHandler, nextHandler }) => {
-  const colors = ['black', 'green', 'blue'];
-
   const onSubmitHandler = (event) => {
     event.preventDefault();
     
@@ -23,11 +22,7 @@ const MoreInfo = ({ backHandler, nextHandler }) => {
     <main>
       <h2>ADDITIONAL INFO</h2>
       <form className='column' onSubmit={onSubmitHandler}>
-
-        <select name="colors">
-          <option value="">SELECT YOUR FAVORITE COLOR</option>
-          {colors.map((color) => (<option key={color} value={color}>{color}</option>))}
-        </select>
+        <ColorSelect />
 
         <div className='terms-row'>
           <input type='checkbox' name="terms" />
