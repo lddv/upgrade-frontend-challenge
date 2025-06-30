@@ -73,8 +73,10 @@ const App = () => {
               onError: onConfirmationSubmitClickHandlerError,
               onSuccess: onConfirmationSubmitClickHandlerSuccess,
             }}
-          />}
-        />
+          />
+        }
+      />
+      
       <Route path={ROUTE_PATHS.SUCCESS} element={<Success onRestart={onErrorRestartHandler} />} />
       <Route path={ROUTE_PATHS.ERROR} element={<Error onRestart={onErrorRestartHandler} />} />
     </Routes>

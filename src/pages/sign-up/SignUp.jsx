@@ -30,7 +30,7 @@ const SignUp = ({ onClickHandler, userData }) => {
     } else {
       emailInput.setCustomValidity('This e-mail format is not accepted. Try something like user@domain.com');
       emailInput.reportValidity();
-      return console.error('email not valid')
+      return;
     }
 
     onClickHandler(formValues);
