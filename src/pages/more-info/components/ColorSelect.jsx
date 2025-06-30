@@ -1,8 +1,4 @@
-import { useGetColors } from '../data/useGetColors'
-
-const ColorSelect = () => {
-  const {isLoading, colors, error } = useGetColors();
-  
+const ColorSelect = ({ isLoading, colors, error }) => {
   return (
     <>
       {isLoading && <span data-testid="color-loading">Finding colors...</span>}

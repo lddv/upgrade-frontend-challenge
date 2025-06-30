@@ -1,40 +1,34 @@
 import '@testing-library/jest-dom'
 import { render, screen } from "@testing-library/react";
-import { useGetColors } from "../data/useGetColors";
-import ColorSelect from "./ColorSelect";
 import { expect } from "vitest";
 
-vi.mock('../data/useGetColors');
+import ColorSelect from "./ColorSelect";
 
 describe('ColorSelect', () => {
-  it('shows loading message whenever the api is still fetching', () => {
-    useGetColors.mockImplementation(() => ({
+  it('shows loading message', () => {
+    render(<ColorSelect {...{
       isLoading: true,
       colors: [],
       error: undefined,
-    }));
-
-    render(<ColorSelect />);
+    }} />);
 
     expect(screen.getByTestId('color-loading')).toBeInTheDocument();
     expect(screen.queryByTestId('color-error')).not.toBeInTheDocument();
   });
 
   it('shows error message whenever the api has a problem', () => {
-    useGetColors.mockImplementation(() => ({
+    render(<ColorSelect {...{
       isLoading: false,
       colors: [],
       error: 'there has been an error',
-    }));
-
-    render(<ColorSelect />);
+    }} />);
 
     expect(screen.queryByTestId('color-loading')).not.toBeInTheDocument();
     expect(screen.getByTestId('color-error')).toBeInTheDocument();
   });
 
   it('shows colors when api has the correct return', () => {
-    useGetColors.mockImplementation(() => ({
+    render(<ColorSelect {...{
       isLoading: false,
       colors: [
         "black",
@@ -44,9 +38,7 @@ describe('ColorSelect', () => {
         "white"
       ],
       error: null,
-    }));
-
-    render(<ColorSelect />);
+    }} />);
 
     expect(screen.queryByTestId('color-loading')).not.toBeInTheDocument();
     expect(screen.queryByTestId('color-error')).not.toBeInTheDocument();

@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 
 import './styles.css'
-import '../../components/styles.css'
+import '../styles.css'
 
 import {isValidEmail} from '../../utils'
 

@@ -2,7 +2,7 @@ import '@testing-library/jest-dom'
 import { render, screen } from "@testing-library/react";
 import { beforeEach, describe, expect, it, vi } from "vitest";
 
-import SignUp from ".";
+import SignUp from "./SignUp";
 
 const onClickHandlerMock = vi.fn();
 

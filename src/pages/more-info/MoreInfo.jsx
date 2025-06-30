@@ -1,8 +1,16 @@
-import './styles.css'
-import '../../components/styles.css'
+import { useRef } from 'react';
+
 import ColorSelect from './components/ColorSelect';
+import { useGetColors } from './data/useGetColors'
+
+import './styles.css'
+import '../styles.css'
 
 const MoreInfo = ({ backHandler, nextHandler }) => {
+  const formRef = useRef(null);
+
+  const {isLoading, colors, error } = useGetColors();
+
   const onSubmitHandler = (event) => {
     event.preventDefault();
     
@@ -18,11 +26,13 @@ const MoreInfo = ({ backHandler, nextHandler }) => {
     nextHandler(formValues);
   }
 
+  const isNextDisabled = isLoading || error;
+
   return (
     <main>
       <h2>ADDITIONAL INFO</h2>
-      <form className='column' onSubmit={onSubmitHandler}>
-        <ColorSelect />
+      <form ref={formRef} className='column' onSubmit={onSubmitHandler}>
+        <ColorSelect isLoading={isLoading} colors={colors} error={error} />
 
         <div className='terms-row'>
           <input type='checkbox' name="terms" />
@@ -30,8 +40,8 @@ const MoreInfo = ({ backHandler, nextHandler }) => {
         </div>
         
         <div className='button-row'>
-            <button type='button' className='previous' onClick={backHandler}>Back</button>
-            <button className='next' type='submit'>Next</button>
+          <button type='button' className='previous' onClick={backHandler}>Back</button>
+          <button className='next' type='submit' disabled={isNextDisabled}>Next</button>
         </div>
       </form>
     </main>

@@ -1,4 +1,4 @@
-import '../../components/styles.css'
+import '../styles.css'
 
 const Confirmation = ({ userData, backHandler, submitHandler }) => {
   const onSubmitHandler = (event) => {

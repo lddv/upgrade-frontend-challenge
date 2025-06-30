@@ -1,11 +1,11 @@
 import { useState } from "react";
 import { Route, Routes, useNavigate } from "react-router";
 
-import SignUp from "./pages/sign-up";
+import SignUp from "./pages/sign-up/SignUp";
 import MoreInfo from "./pages/more-info/MoreInfo";
-import Confirmation from "./pages/confirmation";
-import Error from "./pages/error";
-import Success from "./pages/success";
+import Confirmation from "./pages/confirmation/Confirmation";
+import Error from "./pages/error/Error";
+import Success from "./pages/success/Success";
 
 const ROUTE_PATHS = {
   SIGNUP: '/',
