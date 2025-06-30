@@ -34,8 +34,6 @@ const MoreInfo = ({ backHandler, nextHandler, userData }) => {
       terms: formData.get('terms') === 'on',
     };
 
-    console.log({formData, formValues});
-
     nextHandler(formValues);
   }
 
@@ -48,7 +46,7 @@ const MoreInfo = ({ backHandler, nextHandler, userData }) => {
         <ColorSelect isLoading={isLoading} colors={colors} error={error} />
 
         <div className='terms-row'>
-          <input type='checkbox' name="terms" />
+          <input type='checkbox' name="terms" required />
           <label htmlFor="terms">
             I AGREE TO <a href="http://upgrade.com" target='_blank' rel="noopener">TERMS AND CONDITIONS</a>
           </label>
