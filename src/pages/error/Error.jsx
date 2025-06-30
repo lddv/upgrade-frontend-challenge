@@ -10,7 +10,7 @@ const Error = ({ onRestart }) => {
         <div>Uh oh, something went wrong. Please try again later.</div>
       </div>
       
-      <div className='button-row'>
+      <div className='button-row mt-40'>
         <button onClick={onRestart}>Restart</button>
       </div>
     </main>

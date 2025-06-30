@@ -10,7 +10,7 @@ const Success = ({ onRestart }) => {
         <div>You should receive a confirmation email soon.</div>
       </div>
       
-      <div className='button-row'>
+      <div className='button-row mt-40'>
         <button onClick={onRestart}>Restart</button>
       </div>
     </main>

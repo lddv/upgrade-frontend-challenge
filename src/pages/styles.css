@@ -21,3 +21,7 @@ main {
 input {
   text-transform: none;
 }
+
+.mt-40 {
+  margin-top: 40px;
+}
