@@ -1,4 +1,5 @@
 import './styles.css'
+import '../../components/styles.css'
 
 const MoreInfo = ({ backHandler, nextHandler }) => {
   const colors = ['black', 'green', 'blue'];
@@ -8,12 +9,11 @@ const MoreInfo = ({ backHandler, nextHandler }) => {
     
     const formData = new FormData(event.target);
 
-    // Object.formEntries(formData)
-    
     const formValues = {
-      color: formData.get('colors'), // TODO: get selected color
+      color: formData.get('colors'),
       terms: formData.get('terms') === 'on',
     };
+
     console.log({formData, formValues});
 
     nextHandler(formValues);
@@ -24,7 +24,7 @@ const MoreInfo = ({ backHandler, nextHandler }) => {
       <h2>ADDITIONAL INFO</h2>
       <form className='column' onSubmit={onSubmitHandler}>
 
-        <select id="colors">
+        <select name="colors">
           <option value="">SELECT YOUR FAVORITE COLOR</option>
           {colors.map((color) => (<option key={color} value={color}>{color}</option>))}
         </select>
@@ -35,7 +35,7 @@ const MoreInfo = ({ backHandler, nextHandler }) => {
         </div>
         
         <div className='button-row'>
-            <button className='previous' onClick={backHandler}>Back</button>
+            <button type='button' className='previous' onClick={backHandler}>Back</button>
             <button className='next' type='submit'>Next</button>
         </div>
       </form>
