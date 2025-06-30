@@ -41,7 +41,7 @@ const SignUp = ({ onClickHandler, userData }) => {
   return (
     <main>
       <h2>SIGN UP</h2>
-      <form ref={formRef} className='column' onSubmit={onSubmitHandler}>
+      <form role='form' ref={formRef} className='column' onSubmit={onSubmitHandler}>
         <input name="name" placeholder="FIRST NAME" required type='text' />
         <input name="email" placeholder="E-MAIL" required type='email' onInput={cancelErrorMessageOnInput} />
         <input name="password" placeholder="PASSWORD" required type='password' minLength={8} />
